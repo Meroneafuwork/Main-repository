@@ -6,11 +6,11 @@
 
   - name: download filebeat deb
     command: curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.6.1-amd64.deb
-
+ 
   - name: install filebeat deb
     command: dpkg -i filebeat-7.6.1-amd64.deb
 
-  - name: drop in filebeat.yml
+  - name: drop in filebeat.yml 
     copy:
       src: ~/filebeat.yml
       dest: /etc/filebeat/filebeat.yml
@@ -28,32 +28,4 @@
     systemd:
       name: filebeat
       enabled: yes
-
-  ##
-    ---
-- name: Install metric beat
-  hosts: webservers
-  become: true
-  tasks:
-
-  - name: Download metricbeat
-    command: curl -L -O https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.6.1-amd64.deb
-
-  - name: install metricbeat
-    command: sudo dpkg -i metricbeat-7.6.1-amd64.deb
-
-  - name: enable and configure docker module for metric beat
-    command: sudo metricbeat modules enable docker
-
-  - name: setup metric beat
-    command: sudo metricbeat setup
-   
-  - name: start metric beat
-    command: sudo sudo service metricbeat start
-
-  - name: enable service metricbeat on boot
-    systemd:
-      name: metricbeat
-      enabled: yes
-
 

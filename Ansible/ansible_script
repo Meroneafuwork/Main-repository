@@ -1,0 +1,64 @@
+---
+- name: installing and launching filebeat
+  hosts: webservers
+  become: yes
+  tasks:
+
+  - name: download filebeat deb
+    command: curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.6.1-amd64.deb
+
+  - name: install filebeat deb
+    command: dpkg -i filebeat-7.6.1-amd64.deb
+
+  - name: drop in filebeat.yml
+    copy:
+      src: ~/filebeat.yml
+      dest: /etc/filebeat/filebeat.yml
+
+  - name: enable and configure system module
+    command: sudo filebeat modules enable system
+
+  - name: setup filebeat
+    command: sudo filebeat setup
+
+  - name: start filebeat service
+    command: sudo service filebeat start
+
+  - name: enable service filebeat on boot
+    systemd:
+      name: filebeat
+      enabled: yes
+
+  ##
+    ---
+- name: Install metric beat
+  hosts: webservers
+  become: true
+  tasks:
+
+  - name: Download metricbeat
+    command: curl -L -O https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.6.1-amd64.deb
+
+  - name: install metricbeat
+    command: sudo dpkg -i metricbeat-7.6.1-amd64.deb
+
+  - name: enable and configure docker module for metric beat
+    command: sudo metricbeat modules enable docker
+
+  - name: setup metric beat
+    command: sudo metricbeat setup
+   
+  - name: start metric beat
+    command: sudo sudo service metricbeat start
+
+  - name: enable service metricbeat on boot
+    systemd:
+      name: metricbeat
+      enabled: yes
+
+
+#!/bin/bash
+free -h > ~/backups/freemem/free_mem.txt
+du -h > ~/backups/diskuse/disk_usage.txt
+lsof > ~/backups/openlist/open_list.txt
+df -k > ~/backups/freedisk/free_disk.txt
