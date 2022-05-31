@@ -13,7 +13,7 @@ This document contains the following details:
 ### Description of the Topology
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 Load balancing ensures that the application will be highly reliable, in addition to restricting attacks to the network.
-- Load balacers, if working accurately, will balance load between the 2 servers and blocks ARP spoofing that will prevent a potential DDOS attack.The advantage of a jump box is that the enviornment we are creating is secure with restricted access using network security group plus an ssh key to create a secure connection with the host machine and the jump box, which then makes it hard for hackers to reach the servers.
+- Load balacers, if working accurately, will balance load between the 2 servers and automatically switch connection between either server in the event of service loss.The advantage of a jump box is that the enviornment we are creating is secure with restricted access using network security group plus an ssh key to create a secure connection with the host machine and the jump box, which then makes it hard for hackers to reach the servers.
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the data and system logs.
 -Filebeat monitors the log files or locations that you specify, collects log events, and forwards them either to Elasticsearch or Logstash for indexing
 - Metricbeat takes the metrics and statistics that it collects and ships them to the output that you specify, such as Elasticsearch or Logstash. Metricbeat helps you monitor your servers by collecting metrics from the system and services running on the server.
