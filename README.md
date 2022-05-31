@@ -51,7 +51,8 @@ This ELK server is configured to monitor the following machines:
 We have installed the following Beats on these machines:
 - Filebeat and Metrixbeat
 These Beats allow us to collect the following information from each machine:
-- -Filebeat monitors the log files or locations that you specify, collects log events, and forwards them either to Elasticsearch or Logstash for indexing
+
+- Filebeat monitors the log files or locations that you specify, collects log events, and forwards them either to Elasticsearch or Logstash for indexing
 - Metricbeat takes the metrics and statistics that it collects and ships them to the output that you specify, such as Elasticsearch or Logstash. Metricbeat helps you monitor your servers by collecting metrics from the system and services running on the server.
 ### Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
@@ -59,7 +60,8 @@ SSH into the control node and follow the steps below:
 - Copy the playbook.yml file to ansible directort which is located in /etc/ansible.
 - Update the hosts file to include the private IP addresses of Web-1 , Web-2 and ELK
 - Run the playbook, and navigate to ELK servers public IP through kibana to check that the installation worked as expected.
-_As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc.
+
+As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc.
 -sudo apt update, sudo apt upgrade, sudo install docker.io, sudo apt install phython3.pip etc..
 
 
